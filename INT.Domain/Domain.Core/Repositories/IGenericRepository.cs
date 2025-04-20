@@ -8,19 +8,19 @@ namespace INT.Domain.Domain.Core.Repositories
 {
     public interface IGenericRepository<T> where T : class
     {
-        IEnumerable<T> GetAll();
-        T GetById(object id);
-        void Insert(T obj);
-        void UpdateAndSave(T obj);
-        void Update(T obj);
-        void Delete(object id);
-        void Save();
-        bool IsExist(object id);
-        Task<bool> IsExistAsync(object id);
-        Task<T> GetByIdAsync(object id);
-        Task SaveAsync();
-        Task InsertAsync(T obj);
-        Task InsertAllAsync(IEnumerable<T> list);
-        Task<IEnumerable<T>> GetAllAsync();
+        public IEnumerable<T> GetAll();
+        public T GetById(object id);
+        public void Insert(T obj);
+        public void UpdateAndSave(T obj);
+        public void Update(T obj);
+        public void Delete(object id);
+        public void Save();
+        public bool IsExist(object id);
+        public Task<bool> IsExistAsync(object id);
+        public Task<T> GetByIdAsync(object id);
+        public Task <int> SaveAsync();
+        public Task InsertAsync(T obj);
+        public Task InsertAllAsync(IEnumerable<T> list);
+        public Task<IEnumerable<T>> GetAllAsync();
     }
 }

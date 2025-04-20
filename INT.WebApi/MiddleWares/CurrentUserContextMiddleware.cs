@@ -1,11 +1,9 @@
 ﻿using INT.Application.Application.Interfaces;
 using INT.Application.Contexts;
-using INT.Infrastructure.Infrastructure.Data.Context;
 using INT.Utility;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Web;
-using static INT.Domain.Domain.Constants.Enums;
+using static INT.Utility.Enums;
 
 namespace INT.WebApi.MiddleWares
 {
@@ -20,7 +18,7 @@ namespace INT.WebApi.MiddleWares
             {
                 _next = next;
             //_dbContext = dbContext;
-        }
+          }
 
         public async Task InvokeAsync(HttpContext context, ICurrentUserContext currentUserContext)
         {
@@ -36,6 +34,7 @@ namespace INT.WebApi.MiddleWares
 
             try
             {
+                await _next(context);
                 // can be added Encription/decription for Tocken for more security
                 var authHeader = context.Request.Headers["Authorization"].FirstOrDefault();
                 if (authHeader != null)

@@ -1,7 +1,6 @@
 ﻿using INT.Domain.Domain.Core.Repositories;
 using INT.Infrastructure.Infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
-using System.Data.Entity;
 
 namespace INT.Infrastructure.Infrastructure.Data.Repositories
 {
@@ -51,11 +50,11 @@ namespace INT.Infrastructure.Infrastructure.Data.Repositories
         {
             _context.SaveChanges();
         }
-        public async Task SaveAsync()
+        public async Task<int> SaveAsync()
         {
-            await _context.SaveChangesAsync();
+           var _result= await _context.SaveChangesAsync();
+           return _result;
         }
-     
         public void Update(T obj)
         {
             _context.Entry(obj).State = EntityState.Modified;

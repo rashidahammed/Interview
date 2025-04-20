@@ -1,9 +1,9 @@
-using INT.Application.Application.Interfaces;
 using INT.Infrastructure.Infrastructure.IoC;
 using INT.WebApi.MiddleWares;
+using Microsoft.AspNetCore.Builder;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 
 var appSettings = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())
@@ -13,14 +13,23 @@ var appSettings = new ConfigurationBuilder()
 
 builder.Services.RegisterBusinessServices();
 builder.Services.ConfigureInfrastructure(appSettings);
-
+builder.Services.AddControllersWithViews();
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 var app = builder.Build();
+
+var supportedCultures = new[] { "en", "hi" };
+var localizationOptions = new RequestLocalizationOptions()
+    .SetDefaultCulture("en")
+    .AddSupportedCultures(supportedCultures)
+    .AddSupportedUICultures(supportedCultures);
+
+app.UseRequestLocalization(localizationOptions);
 
 
 //using (var scope = app.Services.CreateScope())
@@ -38,7 +47,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-app.UseMiddleware<CurrentUserContextMiddleware>();
+//app.UseMiddleware<CurrentUserContextMiddleware>();
 
 app.MapControllers();
 

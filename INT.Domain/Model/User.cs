@@ -20,6 +20,11 @@ namespace INT.Domain.Model
         public string NameHi { get; set; }
 
         [Required]
+        [Column("UserName")]
+        [MaxLength(100)]
+        public string UserName { get; set; }
+
+        [Required]
         [EmailAddress]
         [Column("Email")]
         [MaxLength(100)]
@@ -28,13 +33,11 @@ namespace INT.Domain.Model
         [Required]
         public string Password { get; set; }
 
-        [Required]
-        public bool IsActive { get; set; }
-
         public long CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
         public long? LastModifiedBy { get; set; }
         public DateTime? LastModifiedOn { get; set; }
         public bool IsDeleted { get; set; }
+        //public virtual ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
     }
 }

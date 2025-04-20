@@ -10,6 +10,7 @@ namespace INT.Domain.Domain.Interfaces
 {
     public interface IUserRepositories : IGenericRepository<User>
     {
+       public Task<bool> DoesUserExist(string userName, string email, long? value);
     }
 }
   

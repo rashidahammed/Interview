@@ -1,7 +1,9 @@
-﻿using INT.Application.Application.Interfaces;
-using INT.Domain.Model;
-using INT.WebApi.UI.Model;
-using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using INT.Application.Application.Core;
+using INT.Application.Application.Interfaces;
+using INT.Application.Model.Requests;
+using INT.Application.Model.Responses;
+using INT.Utility.Resources;
 using Microsoft.AspNetCore.Mvc;
 
 namespace INT.WebApi.Controllers
@@ -11,89 +13,148 @@ namespace INT.WebApi.Controllers
     public class RoleController : Controller
     {
         private readonly IRoleServices _service;
-        public RoleController(IRoleServices service) {
-            _service=service;
+        private readonly IValidationServices _validation;
+
+        public readonly IMapper _mapper;
+        public RoleController(IRoleServices service, IMapper mapper, IValidationServices validation)
+        {
+            _service = service;
+            _mapper = mapper;
+            _validation = validation;
         }
 
+        [HttpGet("GetAllRoles")]
+        public async Task<IActionResult> GetAllRoles()
+        {
+            try
+            {
+                var result = await _service.GetAll();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                {
+                    var _retVal = new ServiceResponse()
+                    {
+                        Success = false,
+                        Message = AppResource.CommonError,
+                    };
+                    return Ok(_retVal);
+                }
+            }
+        }
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create(CreateRoleVm collection)
-        //{
-        //    try
-        //    {
-               
-        //    }
-        //    catch
-        //    {
-        //    }
-        //    finally
-        //    {
-        //        //Add audit log
-        //    }
-        //}
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetDetails(int id)
+        {
+            try
+            {
+                var result = await _service.GetById(id);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                {
+                    var _retVal = new ServiceResponse()
+                    {
+                        Success = false,
+                        Message = AppResource.CommonError,
+                    };
+                    return Ok(_retVal);
+                }
+            }
+        }
 
+        [HttpPost("Create")]
+        public async Task<IActionResult> Create([FromBody] CreateRoleVm model)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
 
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
+                var result = await _service.AddRole(_mapper.Map<RoleDto>(model));
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                {
+                    var _retVal = new ServiceResponse()
+                    {
+                        Success = false,
+                        Message = AppResource.CommonError,
+                    };
+                    return Ok(_retVal);
+                }
+            }
 
-        //// GET: RoleController/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
+        }
 
-        //// GET: RoleController/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
+        [HttpPut("Update")]
+        public async Task<IActionResult> Update([FromBody] UpdateRoleVm model)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
 
-        //// POST: RoleController/Create
-     
+                var result = await _service.UpdateRole(_mapper.Map<UpdateRoleDto>(model));
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                {
+                    var _retVal = new ServiceResponse()
+                    {
+                        Success = false,
+                        Message = AppResource.CommonError,
+                    };
+                    return Ok(_retVal);
+                }
+            }
 
-        //// GET: RoleController/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
+        }
 
-        //// POST: RoleController/Edit/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteRole(int id)
+        {
+            try
+            {
+                var result = await _service.Delete(id);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                {
+                    var _retVal = new ServiceResponse()
+                    {
+                        Success = false,
+                        Message = AppResource.CommonError,
+                    };
+                    return Ok(_retVal);
+                }
+            }
+        }
 
-        //// GET: RoleController/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: RoleController/Delete/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Delete(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        [HttpPut("SoftDelete")]
+        public async Task<IActionResult> SoftDelete(int id)
+        {
+            try
+            {
+                var result = await _service.SoftDelete(id);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                {
+                    var _retVal = new ServiceResponse()
+                    {
+                        Success = false,
+                        Message = AppResource.CommonError,
+                    };
+                    return Ok(_retVal);
+                }
+            }
+        }
     }
 }

@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static INT.Domain.Domain.Constants.Enums;
+﻿using static INT.Utility.Enums;
 
 namespace INT.Application.Contexts
 {
     public class UserContext
     {
-        public long UserId { get; set; }
+        public long UserId { get; set; } = 1;
         public required string Email { get; set; }
         public Language Language { get; set; }
-        public int RoleId { get; set; }
+        public int RoleId { get; set; } = 1;
         public required string UserName { get; set; }
     }
 }

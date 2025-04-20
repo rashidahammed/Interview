@@ -5,6 +5,7 @@ namespace INT.Domain.Domain.Interfaces
 {
     public interface IUserRoleRepositories : IGenericRepository<UserRole>
     {
+        public Task<bool> AddOrUpdateUserRoles(long userId, List<int> roleIds, long currentUserId);
     }
 }
   

@@ -39,5 +39,6 @@ namespace INT.Domain.Model
         public long? LastModifiedBy { get; set; }
         public DateTime? LastModifiedOn { get; set; }
         public bool IsDeleted { get; set; }
+        //public ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
     }
 }

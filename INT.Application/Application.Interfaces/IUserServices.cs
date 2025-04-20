@@ -8,12 +8,11 @@ using System.Threading.Tasks;
 
 namespace INT.Application.Application.Interfaces
 {
-    public interface IRoleServices
+    public interface IUserServices
     {
-        public Task<ServiceResponse<bool>> AddRole(RoleDto Role);
-        public Task<ServiceResponse<bool>> UpdateRole(UpdateRoleDto dto);
-        public Task<ServiceResponse<ViewRoleDto>> GetById(int id);
-        public Task<ServiceResponse<IEnumerable<ViewRoleDto>>> GetAll();
+        public Task<ServiceResponse<bool>> AddUser(UserCreateDto dto);
+        public Task<ServiceResponse<bool>> UpdateUser(UpdateUserDto dto);
+        public Task<ServiceResponse<IEnumerable<ViewUserDto>>> GetAll();
         public Task<ServiceResponse> Delete(int id);
         public Task<ServiceResponse> SoftDelete(int id);
     }
