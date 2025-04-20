@@ -1,5 +1,4 @@
-﻿using INT.Application.Application.Core;
-using INT.Domain.Domain.Interfaces;
+﻿using INT.Domain.Domain.Interfaces;
 using INT.Domain.Model;
 using INT.Infrastructure.Infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;

@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using INT.Application.Application.Core;
 using INT.Application.Application.Interfaces;
-using INT.Application.Contexts;
 using INT.Application.Model.Responses;
 using INT.Domain.Domain.Interfaces;
 using INT.Domain.Model;
@@ -14,13 +13,13 @@ namespace INT.Application.Application.Services
         private readonly IRoleRepositories _repo;
         public readonly IMapper _mapper;
         private readonly IValidationServices _validation;
-        private readonly UserContext _userContext;
+        private readonly ICurrentUserContext _userContext;
         public RoleServices(IRoleRepositories repo, IMapper mapper, IValidationServices validation, ICurrentUserContext userContext)
         {
             _repo = repo;
             _mapper = mapper;
             _validation = validation;
-            _userContext = userContext.GetUserContext();
+            _userContext = userContext;
         }
         public async Task<ServiceResponse<bool>> AddRole(RoleDto dto)
         {
@@ -59,7 +58,7 @@ namespace INT.Application.Application.Services
                     return _retVal;
                 }
 
-                obj.LastModifiedBy = _userContext.RoleId;
+                obj.LastModifiedBy = _userContext.User.UserId;
                 obj.LastModifiedOn = DateTime.Now;
 
                 _mapper.Map<UpdateRoleDto, Role>(dto, obj);
@@ -67,7 +66,7 @@ namespace INT.Application.Application.Services
                 if (_result > 0)
                 {
                     _retVal.Success = true;
-                    _retVal.Message = AppResource.RoleAdded;
+                    _retVal.Message = AppResource.RoleUpdated;
                     _retVal.Data = true;
                 }
             }
@@ -117,7 +116,7 @@ namespace INT.Application.Application.Services
 
             var obj = await _repo.GetByIdAsync(id);
             obj.IsDeleted = true;
-            obj.LastModifiedBy = _userContext.RoleId;
+            obj.LastModifiedBy = _userContext.User.UserId;
             obj.LastModifiedOn = DateTime.Now;
             var _result = await _repo.SaveAsync();
             if (_result > 0)

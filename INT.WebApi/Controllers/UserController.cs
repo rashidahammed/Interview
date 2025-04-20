@@ -13,18 +13,16 @@ namespace INT.WebApi.Controllers
     public class UserController : Controller
     {
         private readonly IUserServices _service;
-        private readonly IValidationServices _validation;
 
         public readonly IMapper _mapper;
-        public UserController(IUserServices service, IMapper mapper, IValidationServices validation)
+        public UserController(IUserServices service, IMapper mapper)
         {
             _service = service;
             _mapper = mapper;
-            _validation = validation;
         }
 
         [HttpGet("GetAllUsers")]
-        public async Task<IActionResult> GetAllRoles()
+        public async Task<IActionResult> GetAllUsers()
         {
             try
             {
@@ -49,9 +47,8 @@ namespace INT.WebApi.Controllers
         {
             try
             {
-                //var result = await _service.GetById(id);
-                //return Ok(result);
-                return Ok();
+                var result = await _service.GetById(id);
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -116,29 +113,8 @@ namespace INT.WebApi.Controllers
 
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteRole(int id)
-        {
-            try
-            {
-                var result = await _service.Delete(id);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                {
-                    var _retVal = new ServiceResponse()
-                    {
-                        Success = false,
-                        Message = AppResource.CommonError,
-                    };
-                    return Ok(_retVal);
-                }
-            }
-        }
-
         [HttpPut("SoftDelete")]
-        public async Task<IActionResult> SoftDelete(int id)
+        public async Task<IActionResult> SoftDelete(long id)
         {
             try
             {

@@ -50,7 +50,7 @@ namespace INT.Infrastructure.Infrastructure.Data.Repositories
                     CreatedBy = currentUserId
                 }).ToList();
 
-                await _context.UserRoles.AddRangeAsync(newUserRoles);
+                _context.UserRoles.AddRange(newUserRoles);
                 await _context.SaveChangesAsync();
             }
 

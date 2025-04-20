@@ -24,16 +24,8 @@ namespace INT.Infrastructure.Infrastructure.IoC
             services.AddScoped<IUserServices, UserServices>();
             services.AddScoped<IUserRepositories, UserRepositories>();
             services.AddScoped<IUserRoleRepositories, UserRoleRepositories>();
-
-
-
-
-
-
-            //services.AddScoped<IJwtTokenService, JwtTokenService>();
-            //services.AddScoped<IDocumentService, DocumentService>();
-            //services.AddScoped<IDocumentSigneeService, DocumentSigneeService>();
-
+            services.AddScoped<IJwtTokenService, JwtTokenService>();
+            services.AddScoped<IUserLoginServices, UserLoginServices>();
         }
     }
 }

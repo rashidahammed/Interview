@@ -2,12 +2,10 @@
 using INT.Application.Application.Core;
 using INT.Application.Application.Interfaces;
 using INT.Domain.Domain.Interfaces;
-using INT.Domain.Model;
-using System.Reflection;
 
 namespace INT.Application.Application.Services
 {
-    public class ValidationServices: IValidationServices
+    public class ValidationServices : IValidationServices
     {
         private readonly IRoleRepositories _roleRepo;
         private readonly IUserRepositories _userRepo;
@@ -21,15 +19,15 @@ namespace INT.Application.Application.Services
             _userRepo = userRepo;
         }
 
-        public async Task<bool> DoesRoleExist(RoleDto dto,int? roleId)
+        public async Task<bool> DoesRoleExist(RoleDto dto, int? roleId)
         {
-            var _result= await _roleRepo.DoesRoleExist(dto.Name, dto.NameHi, roleId);
+            var _result = await _roleRepo.DoesRoleExist(dto.Name, dto.NameHi, roleId);
             return _result;
         }
 
         public async Task<bool> DoesUserExist(UserCreateDto dto, long? userId)
         {
-            var _result = await _userRepo.DoesUserExist(dto.UserName,dto.Email, userId);
+            var _result = await _userRepo.DoesUserExist(dto.UserName, dto.Email, userId);
             return _result;
         }
 

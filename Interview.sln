@@ -3,15 +3,28 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "INT.WebApi", "INT.WebApi\INT.WebApi.csproj", "{C87A4375-A601-4AFF-ABD6-12D86AA95AF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "INT.WebApi", "INT.WebApi\INT.WebApi.csproj", "{C87A4375-A601-4AFF-ABD6-12D86AA95AF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "INT.Application", "INT.Application\INT.Application.csproj", "{DBFAFD83-A635-4A59-B84A-BA275337BFCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "INT.Application", "INT.Application\INT.Application.csproj", "{DBFAFD83-A635-4A59-B84A-BA275337BFCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "INT.Domain", "INT.Domain\INT.Domain.csproj", "{AAB82692-2F58-42DC-BC8C-16D59CB2A225}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "INT.Domain", "INT.Domain\INT.Domain.csproj", "{AAB82692-2F58-42DC-BC8C-16D59CB2A225}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "INT.Infrastructure", "INT.Infrastructure\INT.Infrastructure.csproj", "{9FCA8556-DDF2-4896-96F0-4D35D4765B19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "INT.Infrastructure", "INT.Infrastructure\INT.Infrastructure.csproj", "{9FCA8556-DDF2-4896-96F0-4D35D4765B19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "INT.Utility", "INT.Utility\INT.Utility.csproj", "{6FE063D8-061B-4629-B654-45465390CC79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "INT.Utility", "INT.Utility\INT.Utility.csproj", "{6FE063D8-061B-4629-B654-45465390CC79}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "INT.Database", "INT.Database\INT.Database.sqlproj", "{E43BFF20-C14B-409E-8717-1271853A33C5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DB", "DB", "{0FCE2565-287B-409E-B2F1-64F7EA0208F0}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\..\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\Backup\INT.bak = ..\..\..\..\..\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\Backup\INT.bak
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backup", "Backup", "{6D3AB0B3-8DB4-429E-86D8-8E64C517BD8A}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\..\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\Backup\INT.bak = ..\..\..\..\..\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER\MSSQL\Backup\INT.bak
+		..\..\..\Documents\script.sql = ..\..\..\Documents\script.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,9 +52,19 @@ Global
 		{6FE063D8-061B-4629-B654-45465390CC79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FE063D8-061B-4629-B654-45465390CC79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FE063D8-061B-4629-B654-45465390CC79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E43BFF20-C14B-409E-8717-1271853A33C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E43BFF20-C14B-409E-8717-1271853A33C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E43BFF20-C14B-409E-8717-1271853A33C5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{E43BFF20-C14B-409E-8717-1271853A33C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E43BFF20-C14B-409E-8717-1271853A33C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E43BFF20-C14B-409E-8717-1271853A33C5}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E43BFF20-C14B-409E-8717-1271853A33C5} = {0FCE2565-287B-409E-B2F1-64F7EA0208F0}
+		{6D3AB0B3-8DB4-429E-86D8-8E64C517BD8A} = {0FCE2565-287B-409E-B2F1-64F7EA0208F0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7526A52C-3F3A-4607-BFC0-E10210FA12D2}

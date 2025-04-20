@@ -1,0 +1,23 @@
+﻿USE [INT]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE OR ALTER FUNCTION [dbo].[fn_GetUserRoles]
+(
+    @UserId BIGINT
+)
+RETURNS NVARCHAR(MAX)
+AS
+BEGIN
+    DECLARE @Roles NVARCHAR(MAX)
+
+    SELECT @Roles = STRING_AGG(R.Name, ', ')
+    FROM UserRole UR WITH (NOLOCK)
+    INNER JOIN Role R WITH (NOLOCK) ON R.Id = UR.RoleId
+    WHERE UR.UserId = @UserId AND UR.IsDeleted = 0
+
+    RETURN @Roles
+END

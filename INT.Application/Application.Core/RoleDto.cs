@@ -8,7 +8,7 @@
         public string DescriptionHi { get; set; }
     }
 
-    public class UpdateRoleDto: RoleDto
+    public class UpdateRoleDto : RoleDto
     {
         public int Id { get; set; }
     }

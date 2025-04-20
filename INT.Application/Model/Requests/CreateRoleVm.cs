@@ -36,10 +36,8 @@ namespace INT.Application.Model.Requests
         public string DescriptionHi { get; set; }
     }
 
-    public class UpdateRoleVm: CreateRoleVm
+    public class UpdateRoleVm : CreateRoleVm
     {
         public int Id { get; set; }
     }
-
-  
 }

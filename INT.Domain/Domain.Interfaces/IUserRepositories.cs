@@ -1,16 +1,15 @@
 ﻿using INT.Domain.Domain.Core.Repositories;
 using INT.Domain.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace INT.Domain.Domain.Interfaces
 {
     public interface IUserRepositories : IGenericRepository<User>
     {
-       public Task<bool> DoesUserExist(string userName, string email, long? value);
+        public Task<bool> DoesUserExist(string userName, string email, long? value);
+        public Task<UserDetails> GetUseDetailsById(long userId);
+        public Task<List<UserDetails>> GetAlLUsers();
+        public Task<UserDetails> GetUseDetailsForLogin(string userName, string password);
+
     }
 }
-  
+

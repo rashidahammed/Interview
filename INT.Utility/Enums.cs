@@ -10,7 +10,7 @@ namespace INT.Utility
     {
         public enum Language
         {
-            Arabic = 1,
+            Hindi = 1,
             English = 2
         }
 

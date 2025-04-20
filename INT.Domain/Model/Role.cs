@@ -11,34 +11,33 @@ using System.Threading.Tasks;
 namespace INT.Domain.Model
 {
     [Table("Role")]
-    public class Role:BaseEntity<int>, IAuditableEntity, ISoftDeleteEntity
+    public class Role : BaseEntity<int>, IAuditableEntity, ISoftDeleteEntity
     {
 
         [Required]
         [Column("Name")]
         [MaxLength(50)]
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
         [Required]
         [Column("NameHi")]
         [MaxLength(50)]
-        public string NameHi { get; set; }
+        public required string NameHi { get; set; }
 
         [Required]
         [Column("Description")]
         [MaxLength(255)]
-        public string Description { get; set; }
+        public required string Description { get; set; }
 
         [Required]
         [Column("DescriptionHi")]
         [MaxLength(255)]
-        public string DescriptionHi { get; set; }
+        public required string DescriptionHi { get; set; }
 
         public long CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
         public long? LastModifiedBy { get; set; }
         public DateTime? LastModifiedOn { get; set; }
         public bool IsDeleted { get; set; }
-        //public ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
     }
 }

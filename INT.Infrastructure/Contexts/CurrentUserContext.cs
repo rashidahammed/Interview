@@ -5,12 +5,11 @@ namespace INT.Infrastructure.Contexts
 {
     public class CurrentUserContext : ICurrentUserContext
     {
-        private static readonly AsyncLocal<UserContext> _currentUser = new();
-        public UserContext GetUserContext() => _currentUser.Value;
+        public UserContext User { get; private set; }
 
-        public void SetUserContext(UserContext userContext)
+        public void SetUserContext(UserContext user)
         {
-            _currentUser.Value = userContext;
+            User = user;
         }
     }
 }

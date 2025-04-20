@@ -14,11 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UI.Constants\" />
-    <Folder Include="UI.Model\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\INT.Infrastructure\INT.Infrastructure.csproj" />
     <ProjectReference Include="..\INT.Utility\INT.Utility.csproj" />
   </ItemGroup>

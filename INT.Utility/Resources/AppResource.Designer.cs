@@ -151,6 +151,15 @@ namespace INT.Utility.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Incorrect User name or Password .
+        /// </summary>
+        public static string LoginFailedMsg {
+            get {
+                return ResourceManager.GetString("LoginFailedMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string Password {
@@ -196,6 +205,24 @@ namespace INT.Utility.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Role has been updated Successfully.
+        /// </summary>
+        public static string RoleUpdated {
+            get {
+                return ResourceManager.GetString("RoleUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unauthorized.
+        /// </summary>
+        public static string Unauthorized {
+            get {
+                return ResourceManager.GetString("Unauthorized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New User has been added Successfully.
         /// </summary>
         public static string UserAdded {
@@ -237,6 +264,15 @@ namespace INT.Utility.Resources {
         public static string UserRolesDoesNotExist {
             get {
                 return ResourceManager.GetString("UserRolesDoesNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User has been updated Successfully.
+        /// </summary>
+        public static string UserUpdated {
+            get {
+                return ResourceManager.GetString("UserUpdated", resourceCulture);
             }
         }
     }

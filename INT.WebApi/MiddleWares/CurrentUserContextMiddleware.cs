@@ -1,6 +1,8 @@
 ﻿using INT.Application.Application.Interfaces;
 using INT.Application.Contexts;
 using INT.Utility;
+using INT.Utility.Resources;
+using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using static INT.Utility.Enums;
@@ -10,80 +12,85 @@ namespace INT.WebApi.MiddleWares
     public class CurrentUserContextMiddleware
     {
         private readonly RequestDelegate _next;
-        //private readonly ApplicationDbContext _dbContext;
-
-        //public CurrentUserContextMiddleware(RequestDelegate next, ApplicationDbContext dbContext)
-        //{
-           public CurrentUserContextMiddleware(RequestDelegate next)
-            {
-                _next = next;
-            //_dbContext = dbContext;
-          }
-
-        public async Task InvokeAsync(HttpContext context, ICurrentUserContext currentUserContext)
+        public CurrentUserContextMiddleware(RequestDelegate next)
         {
+            _next = next;
+        }
+
+        public async Task InvokeAsync(HttpContext context)
+        {
+
+            var userContext = context.RequestServices.GetRequiredService<ICurrentUserContext>();
+            var userService = context.RequestServices.GetRequiredService<IUserServices>();
+
             IEnumerable<Claim> claims = null;
             var path = context.Request.Path.Value?.ToLower();
 
-            var skipPaths = new[] { "/api/auth/login", "/api/auth/register", "/swagger", "/health" };
+            var skipPaths = new[] { "/login", "/swagger", "/health" };
 
-            if (skipPaths.Any(p => path.StartsWith(p)))
+            if (!skipPaths.Any(p => path.StartsWith(p)))
             {
-                await _next(context);
-            }
-
-            try
-            {
-                await _next(context);
-                // can be added Encription/decription for Tocken for more security
-                var authHeader = context.Request.Headers["Authorization"].FirstOrDefault();
-                if (authHeader != null)
+                try
                 {
-                    var token = authHeader.Substring("Bearer ".Length).Trim();
-                    var handler = new JwtSecurityTokenHandler();
-                    var jwtToken = handler.ReadJwtToken(token);
-                    claims = jwtToken.Claims.ToList();
-         
-
-                    if (claims == null || !claims.Any())
+                    var authHeader = context.Request.Headers["Authorization"].FirstOrDefault();
+                    if (authHeader != null)
                     {
-                        context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-                        await context.Response.WriteAsync("Unauthorized: Invalid or missing claims.");
-                        return;
-                    }
-                    string? UserId = claims.FirstOrDefault(x => x.Type == ClaimTypeConstants.UserId)?.Value;
+                        var token = authHeader.Substring("Bearer ".Length).Trim();
+                        var handler = new JwtSecurityTokenHandler();
+                        var jwtToken = handler.ReadJwtToken(token);
+                        claims = jwtToken.Claims.ToList();
 
 
-                    if (!string.IsNullOrEmpty(UserId))
-                    {
-                        if (context.User.Identity is { IsAuthenticated: true })
+                        if (claims == null || !claims.Any())
                         {
-                            var userContext = new UserContext
+                            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                            await context.Response.WriteAsync(AppResource.Unauthorized);
+                            return;
+                        }
+                        string? userId = claims.FirstOrDefault(x => x.Type == ClaimTypeConstants.UserId)?.Value;
+
+
+                        if (!string.IsNullOrEmpty(userId))
+                        {
+                            var lagn = CultureInfo.CurrentUICulture?.Name != null && CultureInfo.CurrentUICulture?.Name == "en" ? Language.English : Language.Hindi;
+
+
+                            var userDetails = await userService.GetById(Convert.ToInt64(userId));
+
+                            if (userDetails.Success && userDetails.Data != null)
                             {
-                                UserId = Convert.ToInt64(UserId),
-                                Email = "",
-                                Language= Language.Arabic,
-                                RoleId=1,
-                                UserName="rashid"
-                            };
-                            currentUserContext.SetUserContext(userContext);
+                                userContext.SetUserContext(new UserContext
+                                {
+                                    UserId = userDetails.Data.Id,
+                                    Email = userDetails.Data.Email,
+                                    Language = lagn,
+                                    UserName = userDetails.Data.Name
+                                });
+                            }
+                            else
+                            {
+                                context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                                await context.Response.WriteAsync(AppResource.Unauthorized);
+                                return;
+                            }
                         }
                     }
+                    if (claims == null || !claims.Any() || string.IsNullOrEmpty(claims.FirstOrDefault(x => x.Type == ClaimTypeConstants.UserId)?.Value))
+                    {
+                        context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                        await context.Response.WriteAsync(AppResource.Unauthorized);
+                        return;
+                    }
                 }
-                if (claims == null || !claims.Any() || string.IsNullOrEmpty(claims.FirstOrDefault(x => x.Type == ClaimTypeConstants.UserId)?.Value))
+                catch (Exception ex)
                 {
+                    Console.WriteLine(AppResource.CommonError);
                     context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-                    await context.Response.WriteAsync("Unauthorized: Invalid or missing claims.");
+                    await context.Response.WriteAsync(AppResource.Unauthorized);
                     return;
                 }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Exception occurred while setting logged-in user: {ex.Message}");
-                context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-                await context.Response.WriteAsync("Unauthorized: Invalid or missing claims.");
-                return;
-            }
+
             await _next(context);
         }
     }

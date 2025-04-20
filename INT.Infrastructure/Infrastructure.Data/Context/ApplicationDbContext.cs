@@ -8,33 +8,14 @@ namespace INT.Infrastructure.Infrastructure.Data.Context
     {
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
-           
+
         }
-        public DbSet<User> Users{ get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
-            modelBuilder.Entity<UserRole>()
-                .HasKey(ur => new { ur.UserId, ur.RoleId }); 
-
-            //modelBuilder.Entity<UserRole>()
-            //    .HasOne(ur => ur.User)
-            //    .WithMany(u => u.UserRoles)
-            //    .HasForeignKey(ur => ur.UserId);
-
-            //modelBuilder.Entity<UserRole>()
-            //    .HasOne(ur => ur.Role)
-            //    .WithMany(r => r.UserRoles)
-            //    .HasForeignKey(ur => ur.RoleId);
-
-            modelBuilder.Entity<Role>()
-                .HasIndex(r => r.Name)
-                .IsUnique(); 
-
-
             var hasher = new PasswordHasher<User>();
             var abc = hasher.HashPassword(null, "Aa@123456789");
             base.OnModelCreating(modelBuilder);
@@ -50,7 +31,6 @@ namespace INT.Infrastructure.Infrastructure.Data.Context
             modelBuilder.Entity<UserRole>().HasData(new List<UserRole> {
                 new UserRole { Id = 1, RoleId=1,UserId=1,CreatedBy=1,CreatedOn=DateTime.Now,IsDeleted=false},
             });
-
         }
     }
 }

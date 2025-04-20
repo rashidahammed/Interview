@@ -12,32 +12,30 @@ namespace INT.Domain.Model
         [Required]
         [Column("Name")]
         [MaxLength(100)]
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
         [Required]
         [Column("NameHi")]
         [MaxLength(100)]
-        public string NameHi { get; set; }
+        public required string NameHi { get; set; }
 
         [Required]
         [Column("UserName")]
         [MaxLength(100)]
-        public string UserName { get; set; }
+        public required string UserName { get; set; }
 
         [Required]
         [EmailAddress]
         [Column("Email")]
         [MaxLength(100)]
-        public string Email { get; set; }
+        public required string Email { get; set; }
 
         [Required]
-        public string Password { get; set; }
-
+        public required string Password { get; set; }
         public long CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
         public long? LastModifiedBy { get; set; }
         public DateTime? LastModifiedOn { get; set; }
         public bool IsDeleted { get; set; }
-        //public virtual ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
     }
 }

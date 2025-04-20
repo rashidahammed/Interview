@@ -1,11 +1,7 @@
 ﻿using INT.Application.Application.Core;
 using INT.Application.Model.Requests;
+using INT.Application.Model.Responses;
 using INT.Domain.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace INT.Application.Application.Mapper
 {
@@ -18,14 +14,11 @@ namespace INT.Application.Application.Mapper
             CreateMap<Role, ViewRoleDto>();
             CreateMap<ViewRoleDto, ViewRoleDto>();
             CreateMap<UpdateRoleVm, UpdateRoleDto>();
-
             CreateMap<CreateUserVm, UserCreateDto>();
             CreateMap<UpdateUserVm, UpdateUserDto>();
             CreateMap<UserCreateDto, User>();
-
-            //CreateMap<UserCreateDto, User>()
-            //.ForMember(dest => dest.UserRoles, opt => opt.MapFrom(src =>
-            // src.UserRoles.Select(roleId => new UserRole { RoleId = roleId }).ToList()));
+            CreateMap<UserDetails, UserDetailsVm>();
+            CreateMap<LoginReqVm, LoginDto>();
         }
     }
 }

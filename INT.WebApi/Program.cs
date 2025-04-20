@@ -1,6 +1,5 @@
 using INT.Infrastructure.Infrastructure.IoC;
 using INT.WebApi.MiddleWares;
-using Microsoft.AspNetCore.Builder;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
@@ -29,15 +28,11 @@ var localizationOptions = new RequestLocalizationOptions()
     .AddSupportedCultures(supportedCultures)
     .AddSupportedUICultures(supportedCultures);
 
+localizationOptions.FallBackToParentCultures = false;
+localizationOptions.FallBackToParentUICultures = false;
+
 app.UseRequestLocalization(localizationOptions);
 
-
-//using (var scope = app.Services.CreateScope())
-//{
-//    scope.ServiceProvider.MigrateDatabase();
-//}
-
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -47,7 +42,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-//app.UseMiddleware<CurrentUserContextMiddleware>();
+app.UseMiddleware<CurrentUserContextMiddleware>();
 
 app.MapControllers();
 

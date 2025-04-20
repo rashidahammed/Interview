@@ -1,13 +1,4 @@
-﻿using INT.Domain.Model;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace INT.Application.Application.Core
+﻿namespace INT.Application.Application.Core
 {
     public class UserCreateDto
     {
@@ -17,12 +8,12 @@ namespace INT.Application.Application.Core
         public required string Email { get; set; }
         public required string Password { get; set; }
         public required List<int> UserRoles { get; set; }
-       
+
     }
 
     public class UpdateUserDto : UserCreateDto
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
     }
 
     public class ViewUserDto : UpdateUserDto

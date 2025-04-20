@@ -177,4 +177,16 @@
   <data name="InvalidEmail" xml:space="preserve">
     <value>Invalid Email</value>
   </data>
+  <data name="Unauthorized" xml:space="preserve">
+    <value>Unauthorized</value>
+  </data>
+  <data name="UserUpdated" xml:space="preserve">
+    <value>User has been updated Successfully</value>
+  </data>
+  <data name="RoleUpdated" xml:space="preserve">
+    <value>Role has been updated Successfully</value>
+  </data>
+  <data name="LoginFailedMsg" xml:space="preserve">
+    <value>Incorrect User name or Password </value>
+  </data>
 </root>

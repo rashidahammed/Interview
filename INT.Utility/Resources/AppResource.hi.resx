@@ -154,12 +154,36 @@
     <value>User Already Exist</value>
   </data>
   <data name="UserAdded" xml:space="preserve">
-    <value>New User has been added Successfully</value>
+    <value>नया उपयोगकर्ता सफलतापूर्वक जोड़ दिया गया है</value>
+  </data>
+  <data name="RoleRequired" xml:space="preserve">
+    <value>कम से कम एक भूमिका निर्दिष्ट की जानी चाहिए</value>
+  </data>
+  <data name="UserRolesDoesNotExist" xml:space="preserve">
+    <value>चयनित भूमिकाओं में से एक या अधिक मौजूद नहीं हैं</value>
   </data>
   <data name="UserName" xml:space="preserve">
     <value>User Name</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Password</value>
+    <value>पासवर्ड</value>
+  </data>
+  <data name="UserRoles" xml:space="preserve">
+    <value>उपयोगकर्ता भूमिका</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>ईमेल</value>
+  </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>अमान्य ईमेल</value>
+  </data>
+  <data name="Unauthorized" xml:space="preserve">
+    <value>अनधिकृत</value>
+  </data>
+  <data name="RoleUpdated" xml:space="preserve">
+    <value>भूमिका सफलतापूर्वक अपडेट कर दी गई है</value>
+  </data>
+  <data name="LoginFailedMsg" xml:space="preserve">
+    <value>लॉगिनविफलसंदेश</value>
   </data>
 </root>
