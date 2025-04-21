@@ -1,6 +1,4 @@
-C# Project
-
-This is a C# project that includes a database backup and initialization script. Follow the steps below to set up and run the project successfully.
+This is a .NET Core application built using Clean Architecture principles. It includes a database backup and initialization script. Follow the steps below to set up and run the project successfully.
 
 ## 📁 Project Structure
 
