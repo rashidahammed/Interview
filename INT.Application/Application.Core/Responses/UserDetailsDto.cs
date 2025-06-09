@@ -1,6 +1,6 @@
-﻿namespace INT.Application.Model.Responses
+﻿namespace INT.Application.Application.Core.Responses
 {
-    public class UserDetailsVm
+    public class UserDetailsDto
     {
         public long Id { get; set; }
         public string Name { get; set; }

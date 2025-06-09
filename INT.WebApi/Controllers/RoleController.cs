@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using INT.Application.Application.Core;
 using INT.Application.Application.Interfaces;
-using INT.Application.Model.Requests;
-using INT.Application.Model.Responses;
+using INT.Utility;
 using INT.Utility.Resources;
+using INT.WebApi.Model.Requests;
 using Microsoft.AspNetCore.Mvc;
 
 namespace INT.WebApi.Controllers

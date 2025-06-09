@@ -1,4 +1,5 @@
 using INT.Infrastructure.Infrastructure.IoC;
+using INT.WebApi;
 using INT.WebApi.MiddleWares;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,8 @@ var appSettings = new ConfigurationBuilder()
     .Build();
 
 builder.Services.RegisterBusinessServices();
+builder.Services.AddPresentation();
+
 builder.Services.ConfigureInfrastructure(appSettings);
 builder.Services.AddControllersWithViews();
 

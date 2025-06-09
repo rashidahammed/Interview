@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
 using INT.Application.Application.Core;
+using INT.Application.Application.Core.Responses;
 using INT.Application.Application.Interfaces;
-using INT.Application.Model.Responses;
 using INT.Domain.Domain.Interfaces;
 using INT.Domain.Model;
+using INT.Utility;
 using INT.Utility.Resources;
 using Microsoft.AspNetCore.Identity;
 
@@ -111,12 +112,12 @@ namespace INT.Application.Application.Services
             }
             return _retVal;
         }
-        public async Task<ServiceResponse<IEnumerable<UserDetailsVm>>> GetAll()
+        public async Task<ServiceResponse<IEnumerable<UserDetailsDto>>> GetAll()
         {
-            var _retVal = new ServiceResponse<IEnumerable<UserDetailsVm>>() { Data = null, Message = AppResource.CommonError, Success = false };
+            var _retVal = new ServiceResponse<IEnumerable<UserDetailsDto>>() { Data = null, Message = AppResource.CommonError, Success = false };
 
             var obj = await _repo.GetAlLUsers();
-            _retVal.Data = _mapper.Map<IEnumerable<UserDetailsVm>>(obj);
+            _retVal.Data = _mapper.Map<IEnumerable<UserDetailsDto>>(obj);
 
             if (_retVal.Data != null)
             {
@@ -142,12 +143,12 @@ namespace INT.Application.Application.Services
             }
             return _retVal;
         }
-        public async Task<ServiceResponse<UserDetailsVm>> GetById(long id)
+        public async Task<ServiceResponse<UserDetailsDto>> GetById(long id)
         {
-            var _retVal = new ServiceResponse<UserDetailsVm>() { Message = AppResource.CommonError, Success = false };
+            var _retVal = new ServiceResponse<UserDetailsDto>() { Message = AppResource.CommonError, Success = false };
 
             var obj = await _repo.GetUseDetailsById(id);
-            _retVal.Data = _mapper.Map<UserDetailsVm>(obj);
+            _retVal.Data = _mapper.Map<UserDetailsDto>(obj);
 
             if (_retVal.Data != null)
             {

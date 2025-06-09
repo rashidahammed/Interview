@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace INT.Application.Model.Requests
+namespace INT.WebApi.Model.Requests
 {
     public class LoginReqVm
     {
@@ -11,6 +11,5 @@ namespace INT.Application.Model.Requests
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(INT.Utility.Resources.AppResource))]
         [MaxLength(100)]
         public required string Password { get; set; }
-        public bool? RememberMe { get; set; }
     }
 }

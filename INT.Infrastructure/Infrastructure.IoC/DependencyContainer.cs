@@ -11,11 +11,9 @@ namespace INT.Infrastructure.Infrastructure.IoC
 {
     public static class DependencyContainer
     {
-        private static readonly int _sessionTimeout = 20;
-
         public static void RegisterBusinessServices(this IServiceCollection services)
         {
-            services.AddAutoMapper(typeof(ModelProfile));
+            services.AddAutoMapper(typeof(ApplicationMappingProfile));
             services.AddScoped<ICurrentUserContext, CurrentUserContext>();
             services.AddScoped<IRoleServices, RoleServices>();
             services.AddScoped<IRoleRepositories, RoleRepositories>();

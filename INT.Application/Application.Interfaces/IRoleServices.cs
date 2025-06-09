@@ -1,5 +1,5 @@
 ﻿using INT.Application.Application.Core;
-using INT.Application.Model.Responses;
+using INT.Utility;
 
 namespace INT.Application.Application.Interfaces
 {

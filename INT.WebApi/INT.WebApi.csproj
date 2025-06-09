@@ -18,4 +18,8 @@
     <ProjectReference Include="..\INT.Utility\INT.Utility.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Model\Responses\" />
+  </ItemGroup>
+
 </Project>

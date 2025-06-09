@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using static INT.Utility.Enums;
 
-namespace INT.Application.Model.Requests
+namespace INT.WebApi.Model.Requests
 {
     public class CreateUserVm
     {

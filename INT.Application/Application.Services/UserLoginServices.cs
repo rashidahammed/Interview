@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using INT.Application.Application.Core;
 using INT.Application.Application.Interfaces;
-using INT.Application.Model.Responses;
 using INT.Domain.Domain.Interfaces;
+using INT.Utility;
 using INT.Utility.Resources;
 
 namespace INT.Application.Application.Services
