@@ -26,6 +26,27 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backup", "Backup", "{6D3AB0
 		..\..\..\Documents\script.sql = ..\..\..\Documents\script.sql
 	EndProjectSection
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Queue", "Queue\", "{40327FEB-C7C0-57AF-DE93-52897DA0557E}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.8.1"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_52833"
+		Debug.AspNetCompiler.PhysicalPath = "Queue\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_52833\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_52833"
+		Release.AspNetCompiler.PhysicalPath = "Queue\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_52833\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "52833"
+		SlnRelativePath = "Queue\"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +79,10 @@ Global
 		{E43BFF20-C14B-409E-8717-1271853A33C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E43BFF20-C14B-409E-8717-1271853A33C5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E43BFF20-C14B-409E-8717-1271853A33C5}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{40327FEB-C7C0-57AF-DE93-52897DA0557E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40327FEB-C7C0-57AF-DE93-52897DA0557E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40327FEB-C7C0-57AF-DE93-52897DA0557E}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{40327FEB-C7C0-57AF-DE93-52897DA0557E}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
