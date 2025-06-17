@@ -47,6 +47,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.UseMiddleware<CurrentUserContextMiddleware>();
 
+app.UseCors("AllowedHosts");
 app.MapControllers();
 
 app.Run();

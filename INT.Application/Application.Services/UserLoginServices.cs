@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using INT.Application.Application.Core;
+using INT.Application.Application.Core.Responses;
 using INT.Application.Application.Interfaces;
 using INT.Domain.Domain.Interfaces;
 using INT.Utility;
@@ -21,13 +22,15 @@ namespace INT.Application.Application.Services
             _validation = validation;
             _iJwtTokenService = iJwtTokenService;
         }
-        public async Task<ServiceResponse<string>> Login(LoginDto loginDto)
+        public async Task<ServiceResponse<LoginResponseDto>> Login(LoginDto loginDto)
         {
-            var _result = new ServiceResponse<string>() { Success = true, Message = AppResource.CommonSuccess };
+            var _result = new ServiceResponse<LoginResponseDto>() { Success = true, Message = AppResource.CommonSuccess,Data=new LoginResponseDto() };
             var user = await _repo.GetUseDetailsForLogin(loginDto.UserName, loginDto.Password);
             if (user != null)
             {
-                _result.Data = _iJwtTokenService.GenerateToken(user.Id, user.UserName, user.Email);
+                _result.Data.Token = _iJwtTokenService.GenerateToken(user.Id, user.UserName, user.Email);
+                _result.Data.Name = user.Name;
+                _result.Data.Email = user.Email;
             }
             else
             {

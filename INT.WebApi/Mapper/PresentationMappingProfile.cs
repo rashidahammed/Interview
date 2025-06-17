@@ -1,11 +1,12 @@
-﻿using INT.Application.Application.Core;
+﻿using AutoMapper;
+using INT.Application.Application.Core;
 using INT.WebApi.Model.Requests;
 
 namespace INT.WebApi.Mapper
 {
-    public class PresentationMappingProfile : AutoMapper.Profile
+    public class PresentationMappingProfile :Profile
     {
-        PresentationMappingProfile()
+        public PresentationMappingProfile()
         {
             CreateMap<CreateRoleVm, RoleDto>();
             CreateMap<UpdateRoleVm, UpdateRoleDto>();
